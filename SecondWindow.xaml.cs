@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,13 @@ namespace DemoCorsoWPF
     /// </summary>
     public partial class SecondWindow : Window
     {
-        public SecondWindow()
+        private readonly ILogger<SecondWindow> logger;
+
+        public SecondWindow(ILogger<SecondWindow> logger)
         {
             InitializeComponent();
+            this.logger = logger;
+            this.logger.LogInformation("SecondWindow created");
         }
     }
 }

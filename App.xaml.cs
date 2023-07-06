@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -30,6 +31,7 @@ namespace DemoCorsoWPF
                     services.AddSingleton<MainWindow>();
                     services.AddSingleton<SecondWindow>();
                     services.AddTransient<IDataAccess, MockDataAccess>();
+                    services.AddLogging(configure => configure.AddConsole());
                 }).Build();
 
             var configurationBuilder = new ConfigurationBuilder()
