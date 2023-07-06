@@ -19,20 +19,9 @@ namespace DemoCorsoWPF
             IConfiguration configuration)
         {
             InitializeComponent();
-            this.dataAccess = dataAccess;
-            this.secondWindow = secondWindow;
-            this.configuration = configuration;
+          
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var x = configuration["Prova"];
-            data.Text = dataAccess.GetData();
-        }
-
-        private void OpenWindow(object sender, RoutedEventArgs e)
-        {
-            secondWindow.Show();
-        }
+       
     }
 }

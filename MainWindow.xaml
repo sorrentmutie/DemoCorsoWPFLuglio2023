@@ -8,8 +8,6 @@
         Title="MainWindow" Height="450" Width="800">
     <StackPanel>
         <Label>Hello, world</Label>
-        <TextBlock x:Name="data"></TextBlock>
-        <Button Content="Get Data" Click="Button_Click"></Button>
-        <Button Content="Open Window" Click="OpenWindow"></Button>
+       
     </StackPanel>
 </Window>
