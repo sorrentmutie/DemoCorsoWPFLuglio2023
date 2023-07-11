@@ -1,8 +1,5 @@
 ﻿<Application x:Class="DemoCorsoWPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:DemoCorsoWPF">
-    <Application.Resources>
-         
-    </Application.Resources>
+             xmlns:library="clr-namespace:DemoCorsoWPF.Models">
 </Application>

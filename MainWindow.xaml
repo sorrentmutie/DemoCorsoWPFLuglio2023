@@ -3,11 +3,45 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DemoCorsoWPF"
+        xmlns:library="clr-namespace:DemoCorsoWPF.Models"
+        xmlns:converters="clr-namespace:DemoCorsoWPF.Converters"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <StackPanel>
-        <Label>Hello, world</Label>
+    <Window.Resources>
+        <library:MyData x:Key="myDataSource"></library:MyData>
+        <converters:YesNoToBooleanConverter x:Key="YesNoConverter"/>
+    </Window.Resources>
+
+    <StackPanel x:Name="myStackPanel">
        
+        <!--<Label>Hello, world</Label>
+        <Button Background="{Binding Path=MyColor.ColorName}" Content="OK"></Button>
+        <TextBox x:Name="myTextBox"></TextBox>
+        <TextBlock Text="{Binding ElementName=myTextBox, Path=Text}"></TextBlock>-->
+
+        <!--<Slider Minimum="0" Maximum="360" Name="mySlider"></Slider>
+        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock.LayoutTransform>
+                <RotateTransform 
+                    Angle="{Binding ElementName=mySlider, Path=Value}">
+                </RotateTransform>
+            </TextBlock.LayoutTransform>
+        </TextBlock>-->
+
+        <!--<TextBox x:Name="txtValue"></TextBox>
+        <TextBlock Text="{Binding ElementName=txtValue, Path=Text}"></TextBlock>
+        <CheckBox IsChecked="{Binding ElementName=txtValue, Path=Text,
+            Converter={StaticResource YesNoConverter}}"></CheckBox>-->
+
+        <TextBlock Text="{Binding Id}"></TextBlock>
+        <TextBlock Text="{Binding FirstName}"></TextBlock>
+        <TextBlock Text="{Binding LastName}"></TextBlock>
+        <TextBlock Text="{Binding PhoneNumber}"></TextBlock>
+        <TextBox Text="{Binding Path=FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Button Click="Button_Click">OK</Button>
+
+
+        <DataGrid x:Name="myDataGrid" ItemsSource="{Binding Customers}"></DataGrid>
+        
     </StackPanel>
 </Window>

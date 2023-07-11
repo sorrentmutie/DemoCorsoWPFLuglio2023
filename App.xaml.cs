@@ -28,29 +28,24 @@ namespace DemoCorsoWPF
                     services.AddLogging(configure => configure.AddConsole());
                 }).Build();
 
-            var configurationBuilder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("AppSettings.json");
-            configuration = configurationBuilder.Build();
+                var configurationBuilder = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("AppSettings.json");
+                configuration = configurationBuilder.Build();
 
         }
 
         protected override async void OnStartup(StartupEventArgs e)
         {
             await AppHost!.StartAsync();
-
-
             var startup = AppHost.Services.GetRequiredService<MainWindow>();
             startup.Show();
-
             base.OnStartup(e);
         }
 
         protected override async void OnExit(ExitEventArgs e)
         {
-            
-            await AppHost!.StopAsync();
-           
+            await AppHost!.StopAsync();  
             base.OnExit(e);
         }
 
