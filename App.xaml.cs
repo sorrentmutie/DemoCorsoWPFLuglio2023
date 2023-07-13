@@ -1,4 +1,6 @@
-﻿using DemoCorsoWPF.Data;
+﻿using DemoCorsoWPF.Customers;
+using DemoCorsoWPF.Data;
+using DemoCorsoWPF.Orders;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,6 +28,10 @@ namespace DemoCorsoWPF
                     services.AddSingleton<SecondWindow>();
                     services.AddTransient<IDataAccess, MockDataAccess>();
                     services.AddLogging(configure => configure.AddConsole());
+                    services.AddSingleton<ICustomersData, MockCustomersData>();
+                    services.AddSingleton<IOrdersData, MockOrdersData>();
+                    services.AddSingleton<CustomersListViewModel>();
+                    services.AddSingleton<OrdersListViewModel>();
                 }).Build();
 
                 var configurationBuilder = new ConfigurationBuilder()

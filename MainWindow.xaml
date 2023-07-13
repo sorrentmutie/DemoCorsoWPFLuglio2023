@@ -3,45 +3,42 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:library="clr-namespace:DemoCorsoWPF.Models"
-        xmlns:converters="clr-namespace:DemoCorsoWPF.Converters"
+        xmlns:local="clr-namespace:DemoCorsoWPF"
+        xmlns:customers="clr-namespace:DemoCorsoWPF.Customers"
+        xmlns:orders="clr-namespace:DemoCorsoWPF.Orders"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
+    <!--<Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>-->
+
     <Window.Resources>
-        <library:MyData x:Key="myDataSource"></library:MyData>
-        <converters:YesNoToBooleanConverter x:Key="YesNoConverter"/>
+        <DataTemplate DataType="{x:Type customers:CustomersListViewModel}">
+            <customers:CustomersList></customers:CustomersList>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type orders:OrdersListViewModel}">
+            <orders:OrdersList></orders:OrdersList>
+        </DataTemplate>
+
     </Window.Resources>
 
-    <StackPanel x:Name="myStackPanel">
-       
-        <!--<Label>Hello, world</Label>
-        <Button Background="{Binding Path=MyColor.ColorName}" Content="OK"></Button>
-        <TextBox x:Name="myTextBox"></TextBox>
-        <TextBlock Text="{Binding ElementName=myTextBox, Path=Text}"></TextBlock>-->
+    <Grid>
 
-        <!--<Slider Minimum="0" Maximum="360" Name="mySlider"></Slider>
-        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock.LayoutTransform>
-                <RotateTransform 
-                    Angle="{Binding ElementName=mySlider, Path=Value}">
-                </RotateTransform>
-            </TextBlock.LayoutTransform>
-        </TextBlock>-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
-        <!--<TextBox x:Name="txtValue"></TextBox>
-        <TextBlock Text="{Binding ElementName=txtValue, Path=Text}"></TextBlock>
-        <CheckBox IsChecked="{Binding ElementName=txtValue, Path=Text,
-            Converter={StaticResource YesNoConverter}}"></CheckBox>-->
-
-        <TextBlock Text="{Binding Id}"></TextBlock>
-        <TextBlock Text="{Binding FirstName}"></TextBlock>
-        <TextBlock Text="{Binding LastName}"></TextBlock>
-        <TextBlock Text="{Binding PhoneNumber}"></TextBlock>
-        <TextBox Text="{Binding Path=FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <Button Click="Button_Click">OK</Button>
-
-
-        <DataGrid x:Name="myDataGrid" ItemsSource="{Binding Customers}"></DataGrid>
+        <StackPanel Grid.Column="0" Margin="10">
+            <Button Margin="5" Command="{Binding NavigateCommand}" CommandParameter="customers"> Customers</Button>
+            <Button Margin="5" Command="{Binding NavigateCommand}" CommandParameter="orders"> Orders </Button>
+        </StackPanel>
         
-    </StackPanel>
+        <ContentControl Grid.Column="1"
+            Content="{Binding CurrentViewModel}">
+        </ContentControl>
+        
+        
+    </Grid>
 </Window>
